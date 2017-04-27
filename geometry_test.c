@@ -145,6 +145,26 @@ START_TEST(test_2d_midpoint)
 }
 END_TEST
 
+
+/* ADDED Test for area*/
+/* Provides 3 points and tests if area can be calculated*/
+START_TEST(test_2d_area){
+	coord_2d_t a;
+    coord_2d_t b;
+    coord_2d_t c;
+    
+    a.x = 10;
+    a.y = 18;
+    b.x = 16;
+    b.y = 32;
+    c.x = 41;
+    c.y = 21;
+    
+    coord_2d_area_triangle(&a, &b, &c);
+    ck_assert(coord_2d_area_triangle(&a, &b, &c));
+}
+END_TEST
+
 /* coord_2d Test Suite */
 Suite* coord_2d_suite(void)
 {
@@ -162,10 +182,15 @@ Suite* coord_2d_suite(void)
     TCase* tc_2d_midpoint = tcase_create("coord_2d_midpoint");
     tcase_add_test(tc_2d_midpoint, test_2d_midpoint);
 
+    /* ADDED: creates a test and calls the test named "coord_2d_area"*/
+    TCase* tc_2d_area = tcase_create("coord_2d_area");
+    tcase_add_test(tc_2d_area, test_2d_area);
+
     /* Add Cases to Suite */
     suite_add_tcase(s, tc_2d_eq);
     suite_add_tcase(s, tc_2d_dist);
     suite_add_tcase(s, tc_2d_midpoint);
+    suite_add_tcase(s, tc_2d_area); /* ADDED: */
 
     /* Return Suite */
     return s;
