@@ -1,9 +1,1 @@
 language: c
-sudo: false # only for faster builds
-script:
-  - clang -coverage -O0 geometry.c -o hello
-  - ./geometry_test
-  - gcov geometry.c
-
-after_success:
-  - bash <(curl -s https://codecov.io/bash)
